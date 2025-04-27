@@ -1,0 +1,41 @@
+<div *ngIf="filter">
+  <div class="flex items-center justify-between gap-2 mb-4 w-full">
+    <input
+      type="text"
+      [(ngModel)]="filter"
+      placeholder="Search users..."
+      class="flex-grow px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shrink"
+    />
+    <button
+      (click)="store.toggleSort()"
+      class="flex items-center p-2 text-gray-600 hover:text-gray-800 transition shrink-0 cursor-pointer font-bold border-gray-300 border rounded-lg"
+      aria-label="Toggle sort order"
+    >
+      <span class="material-symbols-outlined" [ngClass]="order()"> sort </span>
+    </button>
+  </div>
+
+  <div *ngFor="let user of filteredUsers()" >
+    <button
+      (click)="selectUser(user)"
+      [ngClass]="{ 'bg-gray-200': user === selectedUser() }"
+      class="cursor-pointer flex items-center justify-between gap-2 px-4 py-2 my-2 hover:bg-gray-200 transition w-full rounded-xl"
+    >
+      <div class="flex items-center">
+        <img
+          [src]="user.picture.thumbnail"
+          class="w-8 h-8 rounded-full mr-3"
+        />
+        <span class="text-gray-800 font-medium text-nowrap">
+          {{ user.name.first }} {{ user.name.last }}
+        </span>
+      </div>
+      <button
+        class="cursor-pointer p-1 flex"
+        (click)="flagUser($event, user)"
+      >
+        <span class="material-symbols-outlined" [class.filled]="user.flagged">flag</span>
+      </button>
+    </button>
+  </div>
+</div>
