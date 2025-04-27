@@ -1,59 +1,57 @@
-# NorskRikstotoUMP
+# User Management App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.9.
+> **Note:**  
+> This project combines a simple Node.js backend and an Angular frontend.  
+> Below are the instructions to get the development environment up and running, a summary of the endpoints, the libraries used, and a brief note on tests.
 
-## Development server
 
-To start a local development server, run:
 
-```bash
-ng serve
-```
+## Installation
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+   ```bash
+   npm install
+   ```
 
-## Code scaffolding
+## Development
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+To start both the backend and frontend in development mode with a single command:
 
 ```bash
-ng generate --help
+npm run dev
 ```
 
-## Building
+This uses the `concurrently` package to launch:
 
-To build the project run:
+- **Node.js Server**  
+  - Runs on `http://localhost:3000` by default.  
+  - Uses a local file (e.g., `src/server/users.json`) as a mock database.
+  - **Endpoints**:  
+    - `GET /users` — fetch all users  
+    - `POST /users/:id` — update a specific user
 
-```bash
-ng build
+- **Angular App**  
+  - Served on `http://localhost:4200` by default.  
+  - Connects to the backend API endpoints above.
+
+## Project Structure
+
+```
+/src/server      # Node.js server code and mock database file
+/src/app         # Angular application source code
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Libraries & Tools
 
-## Running unit tests
+- **Angular** (latest)  
+- **Tailwind CSS** for styling  
+- **RxJS** for reactive programming  
+- **NgRx Signal Store** for state management  
+- **Concurrently** to run server & client together
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## Testing
 
-```bash
-ng test
-```
+I have included basic unit tests covering:
+- Component initialization and method logic  
+- Service HTTP request functionality  
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Hope this is enough :)
